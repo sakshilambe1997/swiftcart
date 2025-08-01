@@ -4,6 +4,8 @@ import dotenv from "dotenv";
 dotenv.config();
 import cors from "cors";
 
+import {getHealth} from "./controllers/health.js"
+
 const app= express();
  app.use(express.json());
  app.use(cors());
@@ -17,6 +19,9 @@ const app= express();
  }
 
  connectDB();
+
+
+ app.get("/health",  getHealth)
 
  const PORT =process.env.PORT || 5000;
 
