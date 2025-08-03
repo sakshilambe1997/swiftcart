@@ -34,9 +34,9 @@ const productSchema= new Schema({
          type:[String],
         required:true,
     },
-    tags:{
-        type:[String],
-    }
+    // tags:{
+    //     type:[String],
+    // }
 
 },{
     timestamps:true
