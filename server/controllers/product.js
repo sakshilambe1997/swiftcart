@@ -35,11 +35,11 @@ const postProduct = async(req,res)=>{
 
 
 const getProducts= async(req,res)=>{
-    const {userId}=req.query;
+    const {productId}=req.query;
 
-    const user = await Product.findById(userId);
+    const product = await Product.findById(productId);
 
-    if(!user){
+    if(!product){
         return res.json({
             success:false,
             message:"Product not Found",
@@ -47,12 +47,12 @@ const getProducts= async(req,res)=>{
         })
     }
 
-    const product = await Product.find({user:userId}).sort({createdAt:-1});
+    const Oneproduct = await Product.find({user:userId}).sort({createdAt:-1});
 
       res.json({
         sucess:true,
         message:"Product fetched successfully",
-        data:product
+        data:Oneproduct
     })
 }
 
