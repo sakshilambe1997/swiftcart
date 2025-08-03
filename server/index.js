@@ -5,6 +5,8 @@ dotenv.config({ quiet: true });
 import cors from "cors";
 
 import {getHealth} from "./controllers/health.js"
+import {postSignup ,postLogin} from "./controllers/user.js"
+
 
 const app= express();
  app.use(express.json());
@@ -22,6 +24,8 @@ const app= express();
 
 
  app.get("/health",  getHealth)
+ app.post("/signup",postSignup)
+ app.post("/login", postLogin);
 
  const PORT =process.env.PORT || 5000;
 
