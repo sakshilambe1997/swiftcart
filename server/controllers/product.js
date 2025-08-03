@@ -47,14 +47,26 @@ const getProducts= async(req,res)=>{
         })
     }
 
-    const Products = await Product.find({user:userId}).sort({createdAt:-1});
+    const product = await Product.find({user:userId}).sort({createdAt:-1});
 
       res.json({
         sucess:true,
         message:"Product fetched successfully",
-        data:Product
+        data:product
     })
 }
 
+const delProduct = async(req,res)=>{
+    const {id}=req.params
 
+    await Product.deleteOne({_id:id});
+
+     res.json({
+        success:true,
+        message:"Producr Deleted Successfully",
+        data:null
+    })
+}
+
+export {postProduct, getProducts,delProduct}
 
