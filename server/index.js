@@ -1,7 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-dotenv.config();
+dotenv.config({ quiet: true });
 import cors from "cors";
 
 import {getHealth} from "./controllers/health.js"
