@@ -47,7 +47,7 @@ const getProducts= async(req,res)=>{
         })
     }
 
-    const Oneproduct = await Product.find({user:userId}).sort({createdAt:-1});
+    const Oneproduct = await Product.find({product:productIdId}).sort({createdAt:-1});
 
       res.json({
         sucess:true,
