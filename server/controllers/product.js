@@ -32,3 +32,29 @@ const postProduct = async(req,res)=>{
     }
 
 }
+
+
+const getProducts= async(req,res)=>{
+    const {userId}=req.query;
+
+    const user = await Product.findById(userId);
+
+    if(!user){
+        return res.json({
+            success:false,
+            message:"Product not Found",
+            data:null
+        })
+    }
+
+    const Products = await Product.find({user:userId}).sort({createdAt:-1});
+
+      res.json({
+        sucess:true,
+        message:"Product fetched successfully",
+        data:Product
+    })
+}
+
+
+
