@@ -1,28 +1,29 @@
 import {model,Schema} from "mongoose"
 
-const productSchema= new Schema({
+const productSchema = new Schema({
 
     name:{
         type:String,
-        required:true,
+        required:true
     },
 
     shortDescription:{
         type:String,
-        required:true,
+        required:true
     },
 
     longDescription:{
         type:String,
-        required:true,
+        required:true
     },
     price:{
         type:Number,
-        required:true,
+        required:true
     },
 
     currentPrice:{
         type:Number,
+        required:true
     },
 
     category:{
@@ -32,7 +33,7 @@ const productSchema= new Schema({
 
     images:{
          type:[String],
-        required:true,
+        // required:true,
     },
     // tags:{
     //     type:[String],
@@ -42,5 +43,5 @@ const productSchema= new Schema({
     timestamps:true
 })
 
-const Product=model("Product",productSchema);
+const Product= model("Product",productSchema);
 export default Product;
