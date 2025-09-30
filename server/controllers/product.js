@@ -50,7 +50,7 @@ const getProduct = async(req,res)=>{
     const product = await Product.findById(productId);
 
     if(!product){
-        return res.json({
+        return res.status(400).json({
             success:false,
             message:"Product not Found",
             data:null

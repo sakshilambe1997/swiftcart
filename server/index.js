@@ -30,8 +30,8 @@ const app= express();
 
 //  Products
  app.post("/product",postProduct);
- app.delete("/product",delProduct);
- app.get("products",getProducts);
+ app.delete("/product/:id",delProduct);
+ app.get("/product/:id",getProducts);
 
  const PORT = 5000;
 
