@@ -7,7 +7,8 @@ const postProduct = async(req,res)=>{
         name,
         shortDescription,
         longDescription,
-        price,currentPrice,
+        price,
+        currentPrice,
         category,
         images,
         
