@@ -59,7 +59,7 @@ const getProduct = async(req,res)=>{
 
     const Oneproduct = await Product.find({product:productId}).sort({createdAt:-1});
 
-      res.json({
+      res.status(200).json({
         sucess:true,
         message:"Product fetched successfully",
         data:Oneproduct
@@ -71,7 +71,7 @@ const delProduct = async(req,res)=>{
 
     await Product.deleteOne({_id:id});
 
-     res.json({
+     res.status(200).json({
         success:true,
         message:"Producr Deleted Successfully",
         data:null
