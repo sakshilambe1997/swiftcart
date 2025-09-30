@@ -6,6 +6,7 @@ import cors from "cors";
 
 import {getHealth} from "./controllers/health.js"
 import {postSignup ,postLogin} from "./controllers/user.js"
+import { delProduct, getProducts, postProduct } from "./controllers/product.js";
 
 
 const app= express();
@@ -27,7 +28,12 @@ const app= express();
  app.post("/signup",postSignup)
  app.post("/login", postLogin);
 
- const PORT =process.env.PORT || 5000;
+//  Products
+ app.post("/product",postProduct);
+ app.delete("/product/:id",delProduct);
+ app.get("/product/:id",getProducts);
+
+ const PORT = 5000;
 
  app.listen(PORT, ()=>{
     console.log(`server is running on PORT ${PORT}`)

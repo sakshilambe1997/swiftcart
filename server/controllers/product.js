@@ -1,23 +1,21 @@
-import Product from "../models/Product";
+import Product from "./../models/Product.js"
 
 const postProduct = async(req,res)=>{
-    const {name,shortDescription,longDescription,price,currentPrice,category,images}= req.body
+    const {name,shortDescription,longDescription,price,currentPrice,category}= req.body
 
-    const product =new Product({
+    const product = new Product({
         name,
         shortDescription,
         longDescription,
         price,
         currentPrice,
-        category,
-        images,
-        
+        category
     })
 
     try{
-        const savedProduct =await product.save();
+        const savedProduct = await product.save();
 
-        res.json({
+        res.status(200).json({
             success: true,
             message: `Product added Succsessfully`,
             data: savedProduct
@@ -25,7 +23,7 @@ const postProduct = async(req,res)=>{
     }
 
     catch(e){
-         res.json({
+         res.status(500).json({
             success: false,
             message: e.message,
             data: null
@@ -35,22 +33,33 @@ const postProduct = async(req,res)=>{
 }
 
 
-const getProducts= async(req,res)=>{
-    const {productId}=req.query;
+const getProducts = async(req,res)=>{
+    const {limit }= req.query   
+    const products= await Product.find().limit(parseInt(limit || 100));
+
+    return res.json({
+        sucess:true,
+        data:products,
+        message:"All Products fetched succesfully"
+    })
+}
+
+const getProduct = async(req,res)=>{
+    const {productId}= req.query;
 
     const product = await Product.findById(productId);
 
     if(!product){
-        return res.json({
+        return res.status(400).json({
             success:false,
             message:"Product not Found",
             data:null
         })
     }
 
-    const Oneproduct = await Product.find({user:userId}).sort({createdAt:-1});
+    const Oneproduct = await Product.find({product:productId}).sort({createdAt:-1});
 
-      res.json({
+      res.status(200).json({
         sucess:true,
         message:"Product fetched successfully",
         data:Oneproduct
@@ -62,12 +71,12 @@ const delProduct = async(req,res)=>{
 
     await Product.deleteOne({_id:id});
 
-     res.json({
+     res.status(200).json({
         success:true,
         message:"Producr Deleted Successfully",
         data:null
     })
 }
 
-export {postProduct, getProducts,delProduct}
+export {postProduct,getProducts,delProduct}
 
