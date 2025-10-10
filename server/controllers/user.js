@@ -10,7 +10,7 @@ const postSignup = async (req, res) => {
         phone,
         address,
         dob: new Date(dob),
-        phone
+        
     })
     try {
         const savedUser = await user.save();
@@ -41,7 +41,7 @@ const postLogin = async (req, res) => {
         if (user) {
             return res.status(200).json({
                 success: true,
-                message: "User Login Suceesfully",
+                message: "User Login Succesfully",
                 data: user
             });
         }
